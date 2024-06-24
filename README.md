@@ -1,4 +1,5 @@
-#Sistema de Gestão de Tarefas (SISTarefas)
+
+# Sistema de Gestão de Tarefas (SISTarefas)
 O Sistema de Gestão de Tarefas (SISTarefas) é uma aplicação web desenvolvida para gerenciar projetos e tarefas associadas a esses projetos. Esta aplicação permite o cadastro de usuários com diferentes níveis de acesso, a criação de projetos, atribuição de tarefas a projetos e gerenciamento das tarefas pelos usuários.
 
 Funcionalidades Principais:
@@ -12,7 +13,9 @@ Tecnologias Utilizadas:
 Node.js
 Express.js
 Prisma ORM
-MySQL 
+MySQL (
 Swagger UI para documentação da API
 Jest para testes automatizados
-JWT (JSON Web Token) para autenticação e autorização
+JWT (JSON Web Token) para autenticação e autorização do Projeto
+
+
