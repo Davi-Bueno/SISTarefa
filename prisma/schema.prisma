@@ -1,0 +1,46 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id               Int       @id @default(autoincrement())
+  nome             String
+  senhaHash        String
+  usuarioAcesso    String    @unique
+  email            String    @unique
+  dataCriacao      DateTime  @default(now())
+  nivelAcesso      String    // "comum", "gerente", "administrador"
+  dataModificacao  DateTime  @updatedAt
+  projetos         Project[] @relation("ProjectGerente")
+  tarefasResponsavel Task[]  @relation("TaskResponsavel")
+  tarefasParticipante Task[] @relation("TaskParticipante")
+}
+
+model Project {
+  id             Int       @id @default(autoincrement())
+  nome           String
+  dataInicio     DateTime
+  gerenteId      Int
+  gerente        User      @relation("ProjectGerente", fields: [gerenteId], references: [id])
+  tarefas        Task[] 
+}
+
+model Task {
+  id                Int       @id @default(autoincrement())
+  dataCriacao       DateTime  @default(now())    // Data de criação da tarefa
+  dataModificacao   DateTime? @updatedAt         // Data de modificação da tarefa (opcional)
+  dataInicio        DateTime?                     // Data de início da tarefa (opcional)
+  dataTermino       DateTime?                     // Data de término da tarefa (opcional)
+  projetoId         Int                           // Chave estrangeira que referencia o ID do projeto
+  projeto           Project   @relation(fields: [projetoId], references: [id]) // Relação com o projeto ao qual a tarefa pertence
+  responsavelId     Int?                          // Chave estrangeira que referencia o ID do usuário responsável pela tarefa (opcional)
+  responsavel       User?     @relation("TaskResponsavel", fields: [responsavelId], references: [id]) // Relação com o usuário responsável pela tarefa
+  participantes     User[]    @relation("TaskParticipante") // Relação com os usuários participantes da tarefa
+  descricao         String                        // Descrição da tarefa
+  concluida         Boolean   @default(false)     // Indica se a tarefa foi concluída ou não
+}

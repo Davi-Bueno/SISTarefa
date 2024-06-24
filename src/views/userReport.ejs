@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Usuários</title>
+</head>
+<body>
+    <h1>Relatório de Usuários</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Usuário</th>
+                <th>Data de Criação</th>
+                <th>Data de Modificação</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(user => { %>
+            <tr>
+                <td><%= user.id %></td>
+                <td><%= user.nome %></td>
+                <td><%= user.email %></td>
+                <td><%= user.usuarioAcesso %></td>
+                <td><%= new Date(user.dataCriacao).toLocaleString() %></td>
+                <td><%= new Date(user.dataModificacao).toLocaleString() %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>

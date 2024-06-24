@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Tarefas</title>
+</head>
+<body>
+    <h1>Relatório de Tarefas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descrição</th>
+                <th>Projeto</th>
+                <th>Responsável</th>
+                <th>Data de Criação</th>
+                <th>Data de Início</th>
+                <th>Data de Término</th>
+                <th>Concluída</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% tasks.forEach(task => { %>
+            <tr>
+                <td><%= task.id %></td>
+                <td><%= task.descricao %></td>
+                <td><%= task.projeto.nome %></td>
+                <td><%= task.responsavel ? task.responsavel.nome : 'N/A' %></td>
+                <td><%= new Date(task.dataCriacao).toLocaleString() %></td>
+                <td><%= task.dataInicio ? new Date(task.dataInicio).toLocaleString() : 'N/A' %></td>
+                <td><%= task.dataTermino ? new Date(task.dataTermino).toLocaleString() : 'N/A' %></td>
+                <td><%= task.concluida ? 'Sim' : 'Não' %></td>
+            </tr>
+            <% }) %>
+        </tbody>
+    </table>
+</body>
+</html>
