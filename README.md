@@ -3,4 +3,4 @@ Sistema de Controle de Tarefas
 
 (descrição projeto)
 +
-(tecnologias utilizadas)
+(tecnologias utilizadas [readme.so])
